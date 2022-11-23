@@ -1,0 +1,22 @@
+class Solution {
+    public boolean containsNearbyDuplicate(int[] nums, int k) {
+       int n = nums.length;
+        Map<Integer,Integer>map=new HashMap<>();
+        for(int p=0;p<n;p++){
+            map.put(nums[p],map.getOrDefault(nums[p],0)+1);
+        }
+        for(int p=0;p<n;p++){
+            if(map.get(nums[p])==1){
+                continue;
+            }
+            for(int q=p+1;q<n;q++){
+                if(nums[q]==nums[p]){
+                    if(Math.abs(q-p)<=k){
+                      return true;  
+                    } 
+                }
+            }
+        }
+        return false;
+    }
+}
